@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import HomeRecentProperties from "@/components/HomeRecentProperties";
 import Infoboxes from "@/components/Infoboxes";
 
 const HomePage = () => {
@@ -6,6 +7,7 @@ const HomePage = () => {
     <div>
       <Hero />
       <Infoboxes/>
+      <HomeRecentProperties/>
     </div>
   );
 };
