@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="bg-gray-200 py-4 mt-24">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4">
         <div className="mb-4 md:mb-0">
-          <Image src={Logo} alt="Logo" className="h-13 w-auto" />
+          <Image src={Logo} alt="Logo" className="h-16 w-auto" />
         </div>
         <div className="flex flex-wrap justify-center md:justify-start mb-4 md:mb-0"></div>
         <div>

@@ -49,7 +49,7 @@ const Navbar = () => {
             {/* <!-- Logo --> */}
             <Link className="flex flex-shrink-0 items-center" href="/">
               <Image
-                className="w-auto h-10 border-2 border-cyan-400 hover:border-4 transition-all duration-300 rounded-full"
+                className="w-16 h-auto border-2 border-cyan-400 hover:border-4 transition-all duration-300 rounded-full"
                 src={Logo}
                 alt="PropertyPulse"
               />
@@ -59,7 +59,7 @@ const Navbar = () => {
               </span>
             </Link>
             {/* <!-- Desktop Menu Hidden below md screens --> */}
-            <div className="hidden md:ml-6 md:block">
+            <div className="hidden md:ml-6 md:flex items-center">
               <div className="flex space-x-2">
                 <Link
                   href="/"
