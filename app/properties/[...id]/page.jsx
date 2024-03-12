@@ -1,8 +1,10 @@
 "use client";
+import { getProperty } from "@/utils/requests";
 import { useParams } from "next/navigation";
 
-const Dynamic = () => {
+const PropertyPage = async () => {
   const { id } = useParams();
-  return <div>{id}</div>;
+  const property = await getProperty(id);
+  return <div>{property.name}</div>;
 };
-export default Dynamic;
+export default PropertyPage;
