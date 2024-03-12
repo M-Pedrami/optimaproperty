@@ -1,12 +1,13 @@
 import ConnectDB from "@/config/database";
-import { NextResponse } from "next/server";
+import Property from "@/models/Property.js";
 
-export const GET = async (req) => {
+export async function GET(req) {
   try {
     await ConnectDB();
-    return  Response.json({message:"Hello World"}, { status: 200 });
+    const properties = await Property.find();
+    return Response.json({ properties }, { status: 200 });
   } catch (error) {
     console.log(error);
-    return  Response.json({message:"Something Went Wrong"}, { status: 500 });
+    return Response.json({ message: "Something Went Wrong" }, { status: 500 });
   }
-};
+}
