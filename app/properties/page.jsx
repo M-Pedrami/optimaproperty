@@ -1,22 +1,5 @@
 import PropertyCard from "@/components/PropertyCard";
-const getProperties = async () => {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_DOMAIN}/properties`,
-      {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-        },
-        cache: "no-store",
-      }
-    );
-    const properties = await response.json();
-    return properties.properties;
-  } catch (error) {
-    console.log("Error from getProperties");
-  }
-};
+import {getProperties} from "@/utils/requests";
 const PropertiesPage = async () => {
   const properties = await getProperties();
   properties.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));

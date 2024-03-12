@@ -1,28 +1,9 @@
-
 import PropertyCard from "./PropertyCard";
 import Link from "next/link";
-
-const getProperties = async () => {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_DOMAIN}/properties`,
-      {
-        method: "GET",
-        headers: {
-          "content-type": "application/json",
-        },
-        cache: "no-store",
-      }
-    );
-    const properties = await response.json();
-    return properties.properties;
-  } catch (error) {
-    console.log("Error from getProperties");
-  }
-};
+import {getProperties} from "@/utils/requests";
 
 const HomeRecentProperties = async () => {
-  const properties = await getProperties()
+  const properties = await getProperties();
   const recentProperties = properties
     .sort(() => Math.random() - Math.random())
     .slice(0, 3);
