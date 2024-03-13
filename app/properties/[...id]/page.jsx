@@ -1,16 +1,18 @@
 "use client";
-import PropertyHeaderImage from "@/components/PropertyHeaderImage";
-import { getProperty } from "@/utils/requests";
-import { useParams } from "next/navigation";
 
-const PropertyPage = async () => {
+import PropertyHeaderImage from "@/components/PropertyHeaderImage";
+import { useParams } from "next/navigation";
+import useSWR from "swr";
+
+const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+const PropertyPage = () => {
   const { id } = useParams();
-  const property = await getProperty(id);
-  if (!property){
-    return <h1 className="text-3xl text-center font-bold mt-10">Property Not Found</h1>
-  }
-  return (
-    <PropertyHeaderImage image={property.images[0]}/>
-  )
+  const { data, error } = useSWR(`${apiDomain}/properties/${id}`, fetcher);
+
+  if (error) return <div>Failed to load</div>;
+  if (!data) return <div>Loading...</div>;
+  return <PropertyHeaderImage image={data.property.images[0]} />;
 };
 export default PropertyPage;
