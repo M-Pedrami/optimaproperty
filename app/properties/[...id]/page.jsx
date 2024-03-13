@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import useSWR from "swr";
 import { FaBookmark, FaShare, FaPaperPlane } from "react-icons/fa6";
 import PropertyDetails from "@/components/PropertyDetails";
+import Spinner from "@/components/Spinner";
 
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -15,7 +16,7 @@ const PropertyPage = () => {
   const { data, error } = useSWR(`${apiDomain}/properties/${id}`, fetcher);
 
   if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <Spinner/>;
   const property = data.property;
   console.log(property);
   return (
