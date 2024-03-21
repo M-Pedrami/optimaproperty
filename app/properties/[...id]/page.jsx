@@ -13,12 +13,18 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const PropertyPage = () => {
   const { id } = useParams();
-  const { data, error } = useSWR(`${apiDomain}/properties/${id}`, fetcher);
+  const { data, error, isLoading } = useSWR(
+    `${apiDomain}/properties/${id}`,
+    fetcher
+  );
 
   if (error) return <div>Failed to load</div>;
-  if (!data) return <Spinner/>;
+  if (isLoading) return <Spinner />;
   const property = data.property;
-  console.log(property);
+  if(!property){
+    return <div>No Properties</div>
+  }
+  console.log(property)
   return (
     <>
       <PropertyHeaderImage image={property.images[0]} />

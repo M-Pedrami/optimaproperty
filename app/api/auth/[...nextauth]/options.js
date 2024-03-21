@@ -35,6 +35,7 @@ export const Options = {
           image: profile.picture,
         });
       }
+
       // 4. Return true to allow sign in
       return true;
     },
