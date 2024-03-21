@@ -29,11 +29,56 @@ const AddPropertyForm = () => {
     },
     images: [],
   });
-  const handleChange = () => {};
-  const handleAmenitiesChange = () => {};
-  const handleImageChange = () => {};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name.includes(".")) {
+      const [outerKey, innerKey] = name.split(".");
+      console.log(outerKey, innerKey);
+      setFields((prev) => ({
+        ...prev,
+        [outerKey]: {
+          ...prev[outerKey],
+          [innerKey]: value,
+        },
+      }));
+    }
+    setFields((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+  const handleAmenitiesChange = (e) => {
+    const { value, checked } = e.target;
+
+    const updatedAmenities = [...fields.amenities];
+
+    if (checked) {
+      updatedAmenities.push(value);
+    } else {
+      const index = updatedAmenities.indexOf(value);
+      if (index !== -1) {
+        updatedAmenities.splice(index, 1);
+      }
+    }
+
+    setFields((prevFields) => ({
+      ...prevFields,
+      amenities: updatedAmenities,
+    }));
+  };
+  const handleImageChange = (e) => {
+    const { files } = e.target;
+    const updatedImages = [...fields.images];
+    for (const file of files) {
+      updatedImages.push(file);
+    }
+    setFields((prevFields) => ({
+      ...prevFields,
+      images: updatedImages,
+    }));
+  };
   return (
-    <form>
+    <form action="/api/properties" method="POST" encType="multipart/form-data">
       <h2 className="text-3xl text-center font-semibold mb-6">Add Property</h2>
 
       <div className="mb-4">

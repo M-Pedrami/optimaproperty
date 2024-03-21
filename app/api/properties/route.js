@@ -11,3 +11,11 @@ export async function GET(req) {
     return Response.json({ message: "Something Went Wrong" }, { status: 500 });
   }
 }
+
+export async function POST(req) {
+  try {
+    return Response.json({ message: "Post Successful" }, { status: 200 });
+  } catch (error) {
+    return Response.json({ message: "Something went wrong" }, { status: 500 });
+  }
+}
