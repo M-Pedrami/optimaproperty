@@ -7,6 +7,7 @@ import useSWR from "swr";
 import { FaBookmark, FaShare, FaPaperPlane } from "react-icons/fa6";
 import PropertyDetails from "@/components/PropertyDetails";
 import Spinner from "@/components/Spinner";
+import PropertyImages from "@/components/PropertyImages";
 
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -120,6 +121,7 @@ const PropertyPage = () => {
           </div>
         </div>
       </section>
+      <PropertyImages images={property.images} />
     </>
   );
 };

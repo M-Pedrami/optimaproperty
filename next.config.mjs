@@ -6,6 +6,10 @@ const nextConfig = {images: {
       hostname: 'lh3.googleusercontent.com',
       
     },
+    {
+      protocol: 'https',
+      hostname: 'res.cloudinary.com'
+    }
   ],
 },};
 
