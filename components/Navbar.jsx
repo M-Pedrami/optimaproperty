@@ -20,7 +20,6 @@ const Navbar = () => {
     };
     authProvider();
   }, []);
-  console.log("::::::", session);
   const pathName = usePathname();
   return (
     <nav className=" bg-blue-800 border-b border-blue-500">
